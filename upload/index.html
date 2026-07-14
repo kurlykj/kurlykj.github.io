@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>КурлыкЯщик — Загрузка файлов</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Inter,sans-serif;
+background:linear-gradient(
+135deg,
+#eef2f5,
+#d9e2ea,
+#bccad7,
+#aebfcc,
+#dde4ea
+);
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
+
+.card{
+width:100%;
+max-width:700px;
+background:rgba(255,255,255,.82);
+backdrop-filter:blur(18px);
+border-radius:28px;
+padding:35px;
+box-shadow:0 20px 50px rgba(0,0,0,.12);
+text-align:center;
+}
+
+
+
+h1{
+margin-bottom:10px;
+}
+
+.subtitle{
+color:#666;
+margin-bottom:30px;
+line-height:1.6;
+}
+
+input[type=text]{
+width:100%;
+padding:15px;
+font-size:16px;
+border:none;
+border-radius:15px;
+background:#f2f5f8;
+margin-bottom:20px;
+outline:none;
+}
+
+.dropzone{
+border:3px dashed #3b82f6;
+border-radius:20px;
+padding:45px 20px;
+background:white;
+cursor:pointer;
+transition:.25s;
+}
+
+.dropzone:hover{
+background:#f7fbff;
+}
+
+.dropzone.drag{
+background:#eaf4ff;
+border-color:#2563eb;
+}
+
+.dropzone p{
+color:#555;
+line-height:1.6;
+}
+
+#file{
+display:none;
+}
+
+#filename{
+margin-top:18px;
+font-weight:600;
+color:#2563eb;
+min-height:24px;
+}
+
+button{
+margin-top:30px;
+width:100%;
+padding:17px;
+border:none;
+border-radius:18px;
+background:linear-gradient(135deg,#3b82f6,#2563eb);
+color:white;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+transition:.25s;
+box-shadow:0 12px 28px rgba(37,99,235,.35);
+}
+
+button:hover{
+transform:translateY(-3px);
+}
+
+.notice{
+margin-top:20px;
+font-size:14px;
+color:#777;
+line-height:1.6;
+}
+
+</style>
+</head>
+<body>
+
+<div class="card">
+
+<img src="https://maxenoz.github.io/KurlykLogo.jpeg">
+
+<h1>Загрузка файла</h1>
+
+<p class="subtitle">
+Выберите файл и отправьте запрос.
+Ваша почтовая программа откроется автоматически.
+</p>
+
+<input
+id="name"
+type="text"
+placeholder="Ваше имя">
+
+<div class="dropzone" id="dropzone">
+
+<p>
+📂<br><br>
+Перетащите файл сюда<br>
+или нажмите для выбора
+</p>
+
+<input type="file" id="file">
+
+</div>
+
+<div id="filename">
+Файл не выбран
+</div>
+
+<button onclick="sendMail()">
+Отправить запрос
+</button>
+
+<p class="notice">
+После открытия почтовой программы прикрепите выбранный файл вручную и отправьте письмо.
+</p>
+
+</div>
+
+<script>
+
+const fileInput=document.getElementById("file");
+const dropzone=document.getElementById("dropzone");
+const filename=document.getElementById("filename");
+
+dropzone.onclick=()=>fileInput.click();
+
+fileInput.onchange=updateName;
+
+function updateName(){
+
+if(fileInput.files.length){
+
+filename.textContent=
+"📄 "+fileInput.files[0].name;
+
+}
+
+}
+
+dropzone.addEventListener("dragover",e=>{
+e.preventDefault();
+dropzone.classList.add("drag");
+});
+
+dropzone.addEventListener("dragleave",()=>{
+dropzone.classList.remove("drag");
+});
+
+dropzone.addEventListener("drop",e=>{
+
+e.preventDefault();
+
+dropzone.classList.remove("drag");
+
+fileInput.files=e.dataTransfer.files;
+
+updateName();
+
+});
+
+function sendMail(){
+
+const name=
+document.getElementById("name").value.trim();
+
+if(name===""){
+
+alert("Введите ваше имя.");
+
+return;
+
+}
+
+let body=
+`Здравствуйте!
+
+Я хочу загрузить файл в КурлыкЯщик.
+
+Имя:
+${name}
+
+Выбранный файл:
+${fileInput.files.length?fileInput.files[0].name:"Файл не выбран"}
+
+Пожалуйста, прикрепите файл к этому письму вручную перед отправкой.
+`;
+
+window.location.href=
+`mailto:maxenoznm@icloud.com?subject=${encodeURIComponent("KurlykYashik request from "+name)}&body=${encodeURIComponent(body)}`;
+
+}
+
+</script>
+
+</body>
+</html>
