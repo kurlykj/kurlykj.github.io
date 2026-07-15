@@ -122,26 +122,65 @@ const button = document.getElementById("proceedButton");
 
 const validUsers = ["test", "test2", "test3"];
 
-if (username && validUsers.includes(username)) {
+// Open (or create) the IndexedDB database
+const request = indexedDB.open("KurlykDB", 1);
+
+request.onupgradeneeded = function(event){
+
+    const db = event.target.result;
+
+    if(!db.objectStoreNames.contains("state")){
+        db.createObjectStore("state", {
+            keyPath: "key"
+        });
+    }
+
+};
+
+request.onsuccess = function(event){
+
+    const db = event.target.result;
+
+    if(username && validUsers.includes(username)){
+
+        // Save the current user
+        const transaction = db.transaction("state", "readwrite");
+        const store = transaction.objectStore("state");
+
+        store.put({
+            key: "currentUser",
+            value: username
+        });
+
+        message.innerHTML =
+            'Ваше имя пользователя:<br><br><span class="valid">' +
+            username +
+            '</span>';
+
+        // Go to /user/USERNAME/
+        button.href = "/user/" + encodeURIComponent(username) + "/";
+        button.style.display = "inline-block";
+
+    }else{
+
+        message.innerHTML =
+            '<span class="invalid">Такой аккаунт не существует.</span>';
+
+        button.style.display = "none";
+
+    }
+
+};
+
+request.onerror = function(){
 
     message.innerHTML =
-    'Ваше имя пользователя:<br><br><span class="valid">' +
-    username +
-    '</span>';
-
-    button.href = "/";
-    button.style.display = "inline-block";
-
-} else {
-
-    message.innerHTML =
-    '<span class="invalid">Такой аккаунт не существует.</span>';
+        '<span class="invalid">Не удалось открыть IndexedDB.</span>';
 
     button.style.display = "none";
 
-}
+};
 
 </script>
-
 </body>
 </html>
