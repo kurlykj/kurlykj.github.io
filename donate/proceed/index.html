@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Продолжит</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:linear-gradient(
+        135deg,
+        #eef2f5 0%,
+        #d9e2ea 30%,
+        #bccad7 55%,
+        #aebfcc 75%,
+        #dde4ea 100%
+    );
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+}
+
+.card{
+    width:100%;
+    max-width:650px;
+    background:rgba(255,255,255,.82);
+    backdrop-filter:blur(18px);
+    border-radius:28px;
+    padding:40px;
+    text-align:center;
+    box-shadow:0 20px 50px rgba(0,0,0,.12);
+}
+
+
+
+h1{
+    margin-bottom:20px;
+}
+
+h2{
+    margin-bottom:35px;
+}
+
+#plan{
+    color:#2563eb;
+    font-weight:700;
+}
+
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.button{
+    display:inline-block;
+    padding:15px 30px;
+    border-radius:18px;
+    text-decoration:none;
+    color:white;
+    background:linear-gradient(135deg,#3b82f6,#2563eb);
+    font-weight:700;
+    box-shadow:0 12px 28px rgba(37,99,235,.35);
+    transition:.25s;
+}
+
+.button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 18px 36px rgba(37,99,235,.45);
+}
+
+@media(max-width:600px){
+
+.buttons{
+    flex-direction:column;
+}
+
+.button{
+    width:100%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<img src="https://maxenoz.github.io/KurlykLogo.jpeg" alt="КурлыкЯщик">
+
+<h1>Потдвердите выбор плана</h1>
+
+<h2>
+Вы выбрали план:
+<span id="plan">...</span>
+</h2>
+
+<div class="buttons">
+    <a class="button" href="/donate/">Назад</a>
+    <a class="button" id="continueButton" href="#">Продолжить</a>
+</div>
+
+</div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const plan = params.get("plan");
+
+const planName = document.getElementById("plan");
+const continueButton = document.getElementById("continueButton");
+
+switch(plan){
+
+    case "minimal":
+        planName.textContent = "Минимальный (5,315 бакров, 1 000 турецких лир)";
+        continueButton.href = "https://telemost.yandex.ru/join#eea9f769-90a0-4b0e-9744-0148cd0f91fd";
+        break;
+
+    case "optimal":
+        planName.textContent = "Оптимальный (10,36 бакров, 2 000 турецких лир)";
+        continueButton.href = "https://telemost.yandex.ru/join#eea9f769-90a0-4b0e-9744-0148cd0f91fd";
+        break;
+
+    case "cooing":
+        planName.textContent = "👑🐦 Курлыкающий (42,5275 бакра, 8 000 турецких лир)";
+        continueButton.href = "https://telemost.yandex.ru/join#eea9f769-90a0-4b0e-9744-0148cd0f91fd";
+        break;
+
+    default:
+        planName.textContent = "План не выбран";
+        continueButton.href = "https://kurlykj.github.io/donate/";
+        break;
+
+}
+
+</script>
+
+</body>
+</html>
