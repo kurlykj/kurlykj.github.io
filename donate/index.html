@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Деньги Гулену</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:linear-gradient(
+        135deg,
+        #eef2f5 0%,
+        #d9e2ea 30%,
+        #bccad7 55%,
+        #aebfcc 75%,
+        #dde4ea 100%
+    );
+    color:#222;
+    text-align:center;
+    padding:50px 20px;
+}
+
+img{
+    width:140px;
+    border-radius:28px;
+    margin-bottom:25px;
+    box-shadow:0 18px 40px rgba(0,0,0,.18);
+}
+
+h1{
+    font-size:2.4rem;
+    margin-bottom:15px;
+}
+
+body > h2{
+    margin-bottom:40px;
+    color:#444;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+    max-width:1400px;
+    margin:auto;
+    align-items:start;
+}
+
+.card-left,
+.card-center,
+.card-right{
+    background:rgba(255,255,255,.82);
+    backdrop-filter:blur(18px);
+    border-radius:28px;
+    padding:35px;
+    box-shadow:0 20px 50px rgba(0,0,0,.12);
+    transition:.25s;
+}
+
+.card-left:hover,
+.card-center:hover,
+.card-right:hover{
+    transform:translateY(-8px);
+    box-shadow:0 28px 60px rgba(0,0,0,.16);
+}
+
+.card-left h2,
+.card-center h2,
+.card-right h2{
+    color:#2563eb;
+    margin-bottom:20px;
+}
+
+.card-left p,
+.card-center p,
+.card-right p{
+    margin:10px 0;
+    color:#555;
+    line-height:1.6;
+}
+
+.button{
+    display:inline-block;
+    margin-top:22px;
+    padding:15px 32px;
+    border-radius:18px;
+    background:linear-gradient(135deg,#3b82f6,#2563eb);
+    color:white;
+    text-decoration:none;
+    font-weight:700;
+    box-shadow:0 12px 28px rgba(37,99,235,.35);
+    transition:.25s;
+}
+
+.button:hover{
+    transform:translateY(-4px);
+    box-shadow:0 20px 40px rgba(37,99,235,.45);
+}
+
+@media(max-width:950px){
+
+.cards{
+    grid-template-columns:1fr;
+    max-width:700px;
+}
+
+.button{
+    display:block;
+    width:100%;
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<img src="https://maxenoz.github.io/KurlykLogo.jpeg" alt="КурлыкЯщик">
+
+<h1>Деньги Гулену, чтобы КурлыкЯщик оставался бесплатным и на семечки</h1>
+
+<h2>Планы поддержки</h2>
+
+<div class="cards">
+
+<div class="card-left">
+
+<h2>Минимальный</h2>
+
+<p>• 128 ГБ поддержки</p>
+<p>• 1-4 мешка(ов) семечек Гулену</p>
+<p>5,315 бакров (21,26 $, 1 000 турецких лир)</p>
+
+<a class="button" href="https://kurlykj.github.io/donate/proceed.html?plan=minimal">
+Выбрать этот
+</a>
+
+</div>
+
+<div class="card-center">
+
+<h2>Оптимальный</h2>
+
+<p>• 256 ГБ поддержки</p>
+<p>• 2-8 мешков семечек Гулену</p>
+<p>10,36 бакров (42,52 $, 2 000 турецких лир)</p>
+
+<a class="button" href="https://kurlykj.github.io/donate/proceed.html?plan=optimal">
+Выбрать этот
+</a>
+
+</div>
+
+<div class="card-right">
+
+<h2>👑🐦 Курлыкающий</h2>
+
+<p>• 1 ТБ помощи</p>
+<p>• 8-10 мешков семечек Гулену</p>
+<p>• Сколько угодно фоток с Гуленом</p>
+<p>• Вы кормите Гулена</p>
+<p>• Сувенир Гулена</p>
+<p>• Приглашение в премиум-чат с Гуленом</p>
+<p>• три лимонных Lipton Ice Tea (один Гулену, один Вам, один мне)</p>
+<p>• стакан огуречной воды для Гулена</p>
+
+<a class="button" href="https://kurlykj.github.io/donate/proceed.html?plan=cooing">
+Выбрать этот УРА
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>
